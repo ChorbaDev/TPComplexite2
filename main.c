@@ -3,7 +3,9 @@
 #include<string.h>
 #include<fcntl.h>
 #include<time.h>
-#include "test_algo_structure.h"
+#include "tableau.h"
+#include "ListeDC.h"
+#include "ListeSC.h"
 
 int main(int argc, char *argv[]) {
     printf("Début du programme\n");
