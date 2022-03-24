@@ -5,7 +5,6 @@
 #include<time.h>
 #include "test_algo_structure.h"
 
-
 //====================================================================
 // Tableau
 // Affiche le tableau
@@ -22,14 +21,20 @@ void affiche_tableau(int *t, int nbel) {
 // recherche un element dans un tableau
 // renvoie l'indice où se trouve l'element, -1 sinon
 int recherche_tableau(int *t, int nbel, int info) {
-    return -1;
+    int i;
+    for (i = 0; i < nbel; ++i) {
+        if( *(t+i)==info)
+            break;
+    }
+    return i;
 }
 
 // A COMPLETER
 // Ajoute un element a la fin du tableau
 // Retourne le nouveau nombre d'element
 int ajout_tableau(int *t, int nbel, int info) {
-    return 0;
+    *(t+nbel)=info;
+    return nbel+1;
 }
 
 // A COMPLETER
@@ -37,7 +42,10 @@ int ajout_tableau(int *t, int nbel, int info) {
 // Ne fait rien si info n'est pas dans le tableau
 // Retourne le nouveau nombre d'elements dans le tableau
 int suppression_tableau(int *t, int nbel, int info) {
-    return 0;
+    int c,position= recherche_tableau(t,nbel,info);
+    for (c = position - 1; c < nbel - 1; c++)
+        t[c] = t[c+1];
+    return nbel-1;
 }
 
 //==================================================================
