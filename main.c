@@ -18,7 +18,6 @@ int main(int argc, char *argv[]) {
     for (i = 0; i < N; i++) {
         tableau[i] = rand() % (N * N);
     }
-
     int nb_elements_de_base = N / 2 + rand() % (N / 3);
 
     //--------
@@ -26,12 +25,10 @@ int main(int argc, char *argv[]) {
     //--------
     int nbel = 0;
     int *t = (int *) malloc(nb_elements_de_base * sizeof(int));
-
     t1 = clock();
     for (i = 0; i < nb_elements_de_base; i++) {
         nbel = ajout_tableau(t, nbel, tableau[rand() % N]);
     }
-
     t2 = clock();
     temps = (float) (t2 - t1) / CLOCKS_PER_SEC;
     printf("Temps de l'ajout pour le tableau : %f\n", temps);
@@ -47,11 +44,11 @@ int main(int argc, char *argv[]) {
     t2 = clock();
     temps = (float) (t2 - t1) / CLOCKS_PER_SEC;
     printf("Temps de la recherche d'un element pour le tableau : %f\n", temps);
-
     t1 = clock();
     for (i = 0; i < nb_elements_de_base; i++) {
         nbel = suppression_tableau(t, nbel, tableau[rand() % N]);
     }
+
     t2 = clock();
     temps = (float) (t2 - t1) / CLOCKS_PER_SEC;
     printf("Temps de la suppression pour le tableau : %f\n", temps);
@@ -74,7 +71,8 @@ int main(int argc, char *argv[]) {
     printf("Temps de l'ajout pour la liste : %f\n", temps);
 
 #ifdef AFFICHETABLEAU
-    //   affiche_structure(...);
+    /*printf("%d\n",nbElementsLSC(&lsc));
+    affiche_listeSC(&lsc);*/
 #endif
 
     t1 = clock();

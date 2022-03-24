@@ -12,13 +12,13 @@ struct listeSC {
     struct maillonSC *debut;
     struct maillonSC *fin;
 };
-
+int nbElementsLSC(struct listeSC *l);
 // Initialise une list pour qu'elle soit vide
 void init_listeSC(struct listeSC *l);
 
 // Libere la liste chainee
 void libere_listeSC(struct listeSC *l);
-
+int rang(struct listeSC *l, int info);
 // Affiche la liste
 void affiche_listeSC(struct listeSC *l);
 
