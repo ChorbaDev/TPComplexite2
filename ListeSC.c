@@ -58,13 +58,22 @@ int nbElementsLSC(struct listeSC *l) {
 }
 // A COMPLETER
 // Ajoute un element a la fin de la liste
+
 void ajout_listeSC(struct listeSC *l, int info) {
     maillonSC *nouveau =(maillonSC *) malloc(sizeof(maillonSC));
     nouveau->info = info;
     nouveau->suivant = NULL;
-    if(l->debut==NULL)
+    if(l->debut==NULL){
         l->debut=nouveau;
+        l->fin=nouveau;
+    }
     else{
+        l->fin->suivant=nouveau;
+        l->fin=nouveau;
+    }
+}
+/*
+ *         printf("2");
         maillonSC *courant = l->debut, *dernier = NULL;
         while(courant != NULL)
         {
@@ -72,9 +81,8 @@ void ajout_listeSC(struct listeSC *l, int info) {
             courant = courant->suivant;
         }
         dernier->suivant = nouveau;
-    }
-}
-int rang(struct listeSC *l, int info){
+ * */
+int rangSC(struct listeSC *l, int info){
     struct maillonSC *aux=l->debut;
     int i=0;
     while (aux!=NULL){
@@ -90,8 +98,10 @@ int rang(struct listeSC *l, int info){
 // Renvoie NULL si info n'est pas dans la liste
 // Retourne le pointeur sur le maillon ou se trouve info
 // A liberer dans le programme principal
+
 struct maillonSC *suppression_listeSC(struct listeSC *l, int info) {
-    int r= rang(l,info);
+
+    int r= rangSC(l,info);
     if(r<0)
         return NULL;
     int i;
@@ -110,3 +120,18 @@ struct maillonSC *suppression_listeSC(struct listeSC *l, int info) {
     }
     return maillonAsupprimer;
 }
+/*
+ *
+    maillonSC *pointer=l->debut,*current=pointer,*next=NULL,*previous=NULL;
+    while (pointer!=NULL){
+        if(pointer->suivant->info==info){
+            previous=pointer;
+            current=pointer->suivant;
+            next=current->suivant;
+            break;
+        }
+        pointer=pointer->suivant;
+    }
+    previous->suivant=next;
+    return current;
+ */

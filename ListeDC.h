@@ -13,7 +13,7 @@ struct listeDC {
     struct maillonDC *debut;
     struct maillonDC *fin;
 };
-
+int rangDC(struct listeDC *pDc, int info);
 // Initialise une list pour qu'elle soit vide
 void init_listeDC(struct listeDC *l);
 
@@ -22,7 +22,7 @@ void libere_listeDC(struct listeDC *l);
 
 // Affiche la liste
 void affiche_listeDC(struct listeDC *l);
-
+void affiche_listeDCinv(struct listeDC *l);
 // A COMPLETER
 // Renvoie le pointeur sur le maillon contenant l'entier info, NULL si info n'est pas present dans la liste
 struct maillonDC *recherche_listeDC(struct listeDC *l, int info);

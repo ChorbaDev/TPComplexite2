@@ -18,7 +18,8 @@ void init_listeSC(struct listeSC *l);
 
 // Libere la liste chainee
 void libere_listeSC(struct listeSC *l);
-int rang(struct listeSC *l, int info);
+//
+int rangSC(struct listeSC *l, int info);
 // Affiche la liste
 void affiche_listeSC(struct listeSC *l);
 
