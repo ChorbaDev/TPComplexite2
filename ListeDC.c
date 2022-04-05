@@ -112,30 +112,33 @@ int rangDC2(struct listeDC *l, int pos) {
 
 //Ajoute un élément en début de liste
 void ajout_entete_listDC(struct listeDC *l, int info) {
-    if (l != NULL) {
-        struct maillonDC *aux = malloc(sizeof *aux);
-        if (aux != NULL) {
-            aux->info = info;
-            aux->precedent = NULL;
-            if (l->fin == NULL) {
-                aux->suivant = NULL;
-                l->debut = aux;
-                l->fin = aux;
-            } else {
-                l->debut->precedent = aux;
-                aux->suivant = l->debut;
-                l->debut = aux;
-            }
-        }
-
+    maillonDC *nouveau = (maillonDC *) malloc(sizeof(maillonDC));
+    nouveau->info = info;
+    nouveau->suivant = NULL;
+    nouveau->precedent = NULL;
+    if (l->debut == NULL) {
+        l->debut = nouveau;
+        l->fin = nouveau;
+    }  else {
+        maillonDC *previous;
+        previous = l->debut;
+        l->debut->precedent = nouveau;
+        l->debut = nouveau;
+        nouveau->suivant = previous;
     }
 }
 
 void insert_listDC(struct listeDC *l, int info, int position) {
-    if (l != NULL) {
-        struct maillonDC *temp = l->debut;
-        int i = 1;
-        while (temp != NULL && i <= position) {
+        if (l->debut==NULL || position<=0){
+            ajout_entete_listDC(l,info);
+        }else if(nbElementsLDC(l)<position){
+            ajout_listeDC(l,info);
+        }else{
+            struct maillonDC *temp = l->debut;
+            int i = 0;
+            while(1){}
+        }
+        /*while (temp != NULL && i <= position) {
             if (position == i) {
                 if (temp->suivant == NULL) {
                     ajout_entete_listDC(l, info);
@@ -156,8 +159,7 @@ void insert_listDC(struct listeDC *l, int info, int position) {
                 temp = temp->suivant;
             }
             i++;
-        }
-    }
+        }*/
 }
 
 // A COMPLETER

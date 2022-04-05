@@ -126,10 +126,13 @@ int main(int argc, char *argv[]) {
         auxdc = suppression_listeDC(&ldc, tableau[rand() % N]);
         if (auxdc != NULL) free(auxdc);
     }
+
     t2 = clock();
     temps = (float) (t2 - t1) / CLOCKS_PER_SEC;
     printf("Temps de la suppression pour le liste : %f\n", temps);
-
+    affiche_listeDC(&ldc);
+    insert_listDC(&ldc,5,0);
+    affiche_listeDC(&ldc);
     libere_listeDC(&ldc);
 
     free(tableau);

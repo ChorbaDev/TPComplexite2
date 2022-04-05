@@ -25,6 +25,8 @@ void libere_listeDC(struct listeDC *l);
 // Affiche la liste
 void affiche_listeDC(struct listeDC *l);
 void affiche_listeDCinv(struct listeDC *l);
+void ajout_entete_listDC(struct listeDC *l, int info);
+void insert_listDC(struct listeDC *l, int info, int position);
 // A COMPLETER
 // Renvoie le pointeur sur le maillon contenant l'entier info, NULL si info n'est pas present dans la liste
 struct maillonDC *recherche_listeDC(struct listeDC *l, int info);
