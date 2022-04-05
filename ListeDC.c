@@ -88,6 +88,56 @@ int rangDC(struct listeDC *l, int info){
     }
     return -1;
 }
+//Ajoute un élément en début de liste
+struct listeDC *ajout_entete_listDC(struct listeDC *l, int info) {
+    if (l != NULL) {
+        struct maillonDC *aux = malloc(sizeof *aux);
+        if (aux != NULL) {
+            aux->info = info;
+            aux->precedent = NULL;
+            if (l->fin == NULL) {
+                aux->suivant = NULL;
+                l->debut = aux;
+                l->fin = aux;
+            } else {
+                l->debut->precedent = aux;
+                aux->suivant = l->debut;
+                l->debut = aux;
+            }
+        }
+
+    }
+    return l;
+}
+
+void insert_listDC(struct listeDC *l, int info, int position) {
+    if (l != NULL) {
+        struct maillonDC *temp = l->debut;
+        int i = 1;
+        while (temp != NULL && i <= position) {
+            if (position == i) {
+                if (temp->suivant == NULL) {
+                    l = ajout_entete_listDC(l, info);
+                } else if (temp->precedent == NULL) {
+                    ajout_listeDC(l, info);
+                } else {
+                    struct maillonDC *aux = malloc(sizeof *aux);
+                    if (aux != NULL) {
+                        aux->info = info;
+                        temp->suivant->precedent = aux;
+                        temp->precedent->suivant = aux;
+                        aux->precedent = temp->precedent;
+                        aux->suivant = temp;
+                    }
+                }
+
+            } else {
+                temp = temp->suivant;
+            }
+            i++;
+        }
+    }
+}
 // A COMPLETER
 // Recherche l'element info dans la liste et le retire
 // Renvoie NULL si info n'est pas dans la liste
