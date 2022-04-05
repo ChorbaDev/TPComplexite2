@@ -14,6 +14,8 @@ struct listeDC {
     struct maillonDC *fin;
 };
 int rangDC(struct listeDC *pDc, int info);
+int rangDC2(struct listeDC *l, int pos);
+int nbElementsLDC(struct listeDC *l);
 // Initialise une list pour qu'elle soit vide
 void init_listeDC(struct listeDC *l);
 
