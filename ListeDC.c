@@ -106,6 +106,7 @@ struct maillonDC *suppression_listeDC(struct listeDC *l, int info) {
         }
         maillonAsupprimer = precedentFinal->suivant;
         suivantFinal = maillonAsupprimer->suivant;
+        suivantFinal->precedent=precedentFinal;
         precedentFinal->suivant = suivantFinal;
     }else{
         maillonAsupprimer = precedentFinal;
