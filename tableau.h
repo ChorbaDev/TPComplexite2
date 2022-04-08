@@ -21,6 +21,10 @@ int recherche_tableau(int *t, int nbel, int info);
 // Retourne le nouveau nombre d'element
 int ajout_tableau(int *t, int nbel, int info);
 
+void ajout_entete_tableau(int *t,int nbel, int info);
+
+void insert_tableau(int *t,int nbel, int info, int position);
+
 // A COMPLETER
 // Recherche l'element info dans le tableau et le retire
 // Ne fait rien si info n'est pas dans le tableau

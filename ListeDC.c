@@ -154,6 +154,7 @@ void insert_listDC(struct listeDC *l, int info, int position) {
 // A liberer dans le programme principal
 struct maillonDC *suppression_listeDC(struct listeDC *l, int info) {
     int r = rangDCinfo(l, info);
+    //printf("\n%d",r);
     if (r < 0)
         return NULL;
     int i;

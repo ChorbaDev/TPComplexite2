@@ -19,6 +19,7 @@ int main(int argc, char *argv[]) {
         tableau[i] = rand() % (N * N);
     }
     int nb_elements_de_base = N / 2 + rand() % (N / 3);
+    printf("\nTableau:\n");
 
     //--------
     //version Tableau
@@ -48,13 +49,11 @@ int main(int argc, char *argv[]) {
     for (i = 0; i < nb_elements_de_base; i++) {
         nbel = suppression_tableau(t, nbel, tableau[rand() % N]);
     }
-
     t2 = clock();
     temps = (float) (t2 - t1) / CLOCKS_PER_SEC;
     printf("Temps de la suppression pour le tableau : %f\n", temps);
-
     free(t);
-
+    printf("\nSimplement Chaînée:\n");
     //--------
     //version Liste Simplement Chaînée
     //--------
@@ -95,7 +94,7 @@ int main(int argc, char *argv[]) {
     temps = (float) (t2 - t1) / CLOCKS_PER_SEC;
     printf("Temps de la suppression pour le liste : %f\n", temps);
     libere_listeSC(&lsc);
-
+    printf("\nDoublement Chaînée:\n");
     //--------
     //version Liste Doublement Chaînée
     //--------
@@ -123,6 +122,7 @@ int main(int argc, char *argv[]) {
     t1 = clock();
     for (i = 0; i < nb_elements_de_base; i++) {
         auxdc = suppression_listeDC(&ldc, tableau[rand() % N]);
+
         if (auxdc != NULL) free(auxdc);
     }
 

@@ -36,7 +36,15 @@ int ajout_tableau(int *t, int nbel, int info) {
     *(t+nbel)=info;
     return nbel+1;
 }
-
+void ajout_entete_tableau(int *t,int nbel, int info){
+    insert_tableau(t,nbel,info,1);
+}
+void insert_tableau(int *t,int nbel, int info, int position){
+    for(int i=nbel-1;i>=position-1;i--){
+        t[i+1]=t[i];
+    }
+    t[position-1]= info;
+}
 // A COMPLETER
 // Recherche l'element info dans le tableau et le retire
 // Ne fait rien si info n'est pas dans le tableau
