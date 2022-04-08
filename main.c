@@ -131,7 +131,8 @@ int main(int argc, char *argv[]) {
     temps = (float) (t2 - t1) / CLOCKS_PER_SEC;
     printf("Temps de la suppression pour le liste : %f\n", temps);
     affiche_listeDC(&ldc);
-    insert_listDC(&ldc,5,0);
+
+    insert_listDC(&ldc,5,2);
     affiche_listeDC(&ldc);
     libere_listeDC(&ldc);
 

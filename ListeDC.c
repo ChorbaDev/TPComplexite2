@@ -36,7 +36,7 @@ void affiche_listeDC(struct listeDC *l) {
     printf("\n");
 }
 
-// Affiche la liste
+// Affiche l'inverse de la liste (pour tester accès au precedent)
 void affiche_listeDCinv(struct listeDC *l) {
     struct maillonDC *aux = l->fin;
 
@@ -78,7 +78,7 @@ void ajout_listeDC(struct listeDC *l, int info) {
     }
 }
 
-int rangDC(struct listeDC *l, int info) {
+int rangDCinfo(struct listeDC *l, int info) {
     struct maillonDC *aux = l->debut;
     int i = 0;
     while (aux != NULL) {
@@ -100,10 +100,9 @@ int nbElementsLDC(struct listeDC *l) {
     return i;
 }
 
-int rangDC2(struct listeDC *l, int pos) {
+int elementAtPos(struct listeDC *l, int pos) {
     struct maillonDC *aux = l->debut;
-    while (pos != 0) {
-        pos--;
+    for (int i = 0; i < pos; ++i) {
         aux = aux->suivant;
     }
     return aux->info;
@@ -131,35 +130,21 @@ void ajout_entete_listDC(struct listeDC *l, int info) {
 void insert_listDC(struct listeDC *l, int info, int position) {
         if (l->debut==NULL || position<=0){
             ajout_entete_listDC(l,info);
-        }else if(nbElementsLDC(l)<position){
+        }else if(position>nbElementsLDC(l)){
             ajout_listeDC(l,info);
         }else{
-            struct maillonDC *temp = l->debut;
-            int i = 0;
-            while(1){}
-        }
-        /*while (temp != NULL && i <= position) {
-            if (position == i) {
-                if (temp->suivant == NULL) {
-                    ajout_entete_listDC(l, info);
-                } else if (temp->precedent == NULL) {
-                    ajout_listeDC(l, info);
-                } else {
-                    struct maillonDC *aux = malloc(sizeof *aux);
-                    if (aux != NULL) {
-                        aux->info = info;
-                        temp->suivant->precedent = aux;
-                        temp->precedent->suivant = aux;
-                        aux->precedent = temp->precedent;
-                        aux->suivant = temp;
-                    }
-                }
-
-            } else {
-                temp = temp->suivant;
+            maillonDC *current= l->debut,*new= (maillonDC *) malloc(sizeof(maillonDC));
+            new->info=info;
+            new->suivant=NULL;
+            new->precedent=NULL;
+            for (int i = 1; i <position ; ++i) {
+                current=current->suivant;
             }
-            i++;
-        }*/
+            new->suivant=current->suivant;
+            new->precedent=current;
+            current->suivant->precedent=new;
+            current->suivant=new;
+        }
 }
 
 // A COMPLETER
@@ -168,7 +153,7 @@ void insert_listDC(struct listeDC *l, int info, int position) {
 // Retourne le pointeur sur le maillon ou se trouve info
 // A liberer dans le programme principal
 struct maillonDC *suppression_listeDC(struct listeDC *l, int info) {
-    int r = rangDC(l, info);
+    int r = rangDCinfo(l, info);
     if (r < 0)
         return NULL;
     int i;

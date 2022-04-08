@@ -13,9 +13,13 @@ struct listeDC {
     struct maillonDC *debut;
     struct maillonDC *fin;
 };
-int rangDC(struct listeDC *pDc, int info);
-int rangDC2(struct listeDC *l, int pos);
+
+int rangDCinfo(struct listeDC *pDc, int info);
+
+int elementAtPos(struct listeDC *l, int pos);
+
 int nbElementsLDC(struct listeDC *l);
+
 // Initialise une list pour qu'elle soit vide
 void init_listeDC(struct listeDC *l);
 
@@ -24,9 +28,13 @@ void libere_listeDC(struct listeDC *l);
 
 // Affiche la liste
 void affiche_listeDC(struct listeDC *l);
+
 void affiche_listeDCinv(struct listeDC *l);
+
 void ajout_entete_listDC(struct listeDC *l, int info);
+
 void insert_listDC(struct listeDC *l, int info, int position);
+
 // A COMPLETER
 // Renvoie le pointeur sur le maillon contenant l'entier info, NULL si info n'est pas present dans la liste
 struct maillonDC *recherche_listeDC(struct listeDC *l, int info);
