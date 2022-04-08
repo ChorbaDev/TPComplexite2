@@ -100,7 +100,7 @@ int nbElementsLDC(struct listeDC *l) {
     return i;
 }
 
-int elementAtPos(struct listeDC *l, int pos) {
+int elementAtPosDC(struct listeDC *l, int pos) {
     struct maillonDC *aux = l->debut;
     for (int i = 0; i < pos; ++i) {
         aux = aux->suivant;

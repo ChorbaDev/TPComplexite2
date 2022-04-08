@@ -16,7 +16,7 @@ struct listeDC {
 
 int rangDCinfo(struct listeDC *pDc, int info);
 
-int elementAtPos(struct listeDC *l, int pos);
+int elementAtPosDC(struct listeDC *l, int pos);
 
 int nbElementsLDC(struct listeDC *l);
 

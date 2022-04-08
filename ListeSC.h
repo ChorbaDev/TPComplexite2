@@ -15,14 +15,17 @@ struct listeSC {
 int nbElementsLSC(struct listeSC *l);
 // Initialise une list pour qu'elle soit vide
 void init_listeSC(struct listeSC *l);
-
+int nbElementsLSC(struct listeSC *l) ;
 // Libere la liste chainee
 void libere_listeSC(struct listeSC *l);
+void insert_listSC(struct listeSC *l, int info, int position);
 //
-int rangSC(struct listeSC *l, int info);
+int rangSCinfo(struct listeSC *l, int info);
+int elementAtPosSC(struct listeSC *l, int pos);
 // Affiche la liste
 void affiche_listeSC(struct listeSC *l);
-
+//Ajoute un élément en début de liste
+void ajout_entete_listSC(struct listeSC *l, int info);
 // A COMPLETER
 // Renvoie le pointeur sur le maillon contenant l'entier info, NULL si info n'est pas present dans la liste
 struct maillonSC *recherche_listeSC(struct listeSC *l, int info);
