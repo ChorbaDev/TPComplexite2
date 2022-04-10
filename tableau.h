@@ -1,7 +1,7 @@
 #ifndef TPCOMPLEXITE2_TABLEAU_H
 #define TPCOMPLEXITE2_TABLEAU_H
 
-#define N 10
+
 #define AFFICHETABLEAU
 
 

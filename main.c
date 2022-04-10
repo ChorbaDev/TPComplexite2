@@ -6,19 +6,19 @@
 #include "tableau.h"
 #include "ListeDC.h"
 #include "ListeSC.h"
-
-int main(int argc, char *argv[]) {
+#define N 50
+void test(int nb){
     printf("Début du programme\n");
 
     int i;
     float temps;
     clock_t t1, t2;
 
-    int *tableau = malloc(N * sizeof(int));
-    for (i = 0; i < N; i++) {
-        tableau[i] = rand() % (N * N);
+    int *tableau = malloc(nb * sizeof(int));
+    for (i = 0; i < nb; i++) {
+        tableau[i] = rand() % (nb * nb);
     }
-    int nb_elements_de_base = N / 2 + rand() % (N / 3);
+    int nb_elements_de_base = nb / 2 + rand() % (nb / 3);
     printf("\nTableau:\n");
 
     //--------
@@ -28,7 +28,7 @@ int main(int argc, char *argv[]) {
     int *t = (int *) malloc(nb_elements_de_base * sizeof(int));
     t1 = clock();
     for (i = 0; i < nb_elements_de_base; i++) {
-        nbel = ajout_tableau(t, nbel, tableau[rand() % N]);
+        ajout_entete_tableau(t, i, tableau[rand() % nb]);
     }
     t2 = clock();
     temps = (float) (t2 - t1) / CLOCKS_PER_SEC;
@@ -40,14 +40,14 @@ int main(int argc, char *argv[]) {
 
     t1 = clock();
     for (i = 0; i < nb_elements_de_base; i++) {
-        recherche_tableau(t, nbel, tableau[rand() % N]);
+        recherche_tableau(t, nbel, tableau[rand() % nb]);
     }
     t2 = clock();
     temps = (float) (t2 - t1) / CLOCKS_PER_SEC;
     printf("Temps de la recherche d'un element pour le tableau : %f\n", temps);
     t1 = clock();
     for (i = 0; i < nb_elements_de_base; i++) {
-        int r=tableau[rand() % N];
+        int r=tableau[rand() % nb];
         nbel = suppression_tableau(t, nbel, r);
     }
     affiche_tableau(t,nbel);
@@ -66,7 +66,7 @@ int main(int argc, char *argv[]) {
 
     t1 = clock();
     for (i = 0; i < nb_elements_de_base; i++) {
-        ajout_listeSC(&lsc, tableau[rand() % N]);
+        ajout_listeSC(&lsc, tableau[rand() % nb]);
     }
     t2 = clock();
 
@@ -81,7 +81,7 @@ int main(int argc, char *argv[]) {
 
     t1 = clock();
     for (i = 0; i < nb_elements_de_base; i++) {
-        recherche_listeSC(&lsc, tableau[rand() % N]);
+        recherche_listeSC(&lsc, tableau[rand() % nb]);
     }
     t2 = clock();
     temps = (float) (t2 - t1) / CLOCKS_PER_SEC;
@@ -89,7 +89,7 @@ int main(int argc, char *argv[]) {
 
     t1 = clock();
     for (i = 0; i < nb_elements_de_base; i++) {
-        int a=tableau[rand() % N];
+        int a = tableau[rand() % nb];
         auxsc = suppression_listeSC(&lsc, a);
         if (auxsc != NULL) free(auxsc);
     }
@@ -106,7 +106,7 @@ int main(int argc, char *argv[]) {
     struct maillonDC *auxdc;
     t1 = clock();
     for (i = 0; i < nb_elements_de_base; i++) {
-        ajout_listeDC(&ldc, tableau[rand() % N]);
+        ajout_listeDC(&ldc, tableau[rand() % nb]);
     }
     t2 = clock();
     temps = (float) (t2 - t1) / CLOCKS_PER_SEC;
@@ -117,14 +117,14 @@ int main(int argc, char *argv[]) {
 #endif
     t1 = clock();
     for (i = 0; i < nb_elements_de_base; i++) {
-        recherche_listeDC(&ldc, tableau[rand() % N]);
+        recherche_listeDC(&ldc, tableau[rand() % nb]);
     }
     t2 = clock();
     temps = (float) (t2 - t1) / CLOCKS_PER_SEC;
     printf("Temps de la recherche pour le liste : %f\n", temps);
     t1 = clock();
     for (i = 0; i < nb_elements_de_base; i++) {
-        auxdc = suppression_listeDC(&ldc, tableau[rand() % N]);
+        auxdc = suppression_listeDC(&ldc, tableau[rand() % nb]);
 
         if (auxdc != NULL) free(auxdc);
     }
@@ -137,3 +137,11 @@ int main(int argc, char *argv[]) {
 
     free(tableau);
 }
+
+int main(int argc, char *argv[]) {
+    for(int i = 10; i<N;i++){
+        printf("iteration %d\n",i);
+        test(i);
+    }
+}
+
