@@ -6,7 +6,7 @@
 #include "tableau.h"
 #include "ListeDC.h"
 #include "ListeSC.h"
-#define N 50
+#define N 999
 void test(int nb){
     printf("Début du programme\n");
 
@@ -139,7 +139,7 @@ void test(int nb){
 }
 
 int main(int argc, char *argv[]) {
-    for(int i = 10; i<N;i++){
+    for(int i = 10; i<N;i=i+200){
         printf("iteration %d\n",i);
         test(i);
     }
