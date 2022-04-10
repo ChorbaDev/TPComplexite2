@@ -39,7 +39,7 @@ void affiche_listeSC(struct listeSC *l) {
 // A COMPLETER
 // Renvoie le pointeur sur le maillon contenant l'entier info, NULL si info n'est pas present dans la liste
 struct maillonSC *recherche_listeSC(struct listeSC *l, int info) {
-    struct maillonSC *aux=l->debut;
+    maillonSC *aux=l->debut;
     while (aux!=NULL){
        if(aux->info==info)
            break;
@@ -48,7 +48,7 @@ struct maillonSC *recherche_listeSC(struct listeSC *l, int info) {
     return aux;
 }
 int nbElementsLSC(struct listeSC *l) {
-    struct maillonSC *aux=l->debut;
+    maillonSC *aux=l->debut;
     int i=0;
     while (aux!=NULL){
         i++;
@@ -56,22 +56,20 @@ int nbElementsLSC(struct listeSC *l) {
     }
     return i;
 }
+
 // A COMPLETER
 // Ajoute un element a la fin de la liste
-int elementAtPos(struct listeSC *l, int pos){
-
-}
 void ajout_listeSC(struct listeSC *l, int info) {
-    maillonSC *nouveau =(maillonSC *) malloc(sizeof(maillonSC));
-    nouveau->info = info;
-    nouveau->suivant = NULL;
+    maillonSC *new =(maillonSC *) malloc(sizeof(maillonSC));
+    new->info = info;
+    new->suivant = NULL;
     if(l->debut==NULL){
-        l->debut=nouveau;
-        l->fin=nouveau;
+        l->debut=new;
+        l->fin=new;
     }
     else{
-        l->fin->suivant=nouveau;
-        l->fin=nouveau;
+        l->fin->suivant=new;
+        l->fin=new;
     }
 }
 
@@ -96,10 +94,9 @@ struct maillonSC *suppression_listeSC(struct listeSC *l, int info) {
     int r = rangSCinfo(l, info);
     if (r < 0)
         return NULL;
-    int i;
-    struct maillonSC *precedentFinal = l->debut, *suivantFinal = NULL, *maillonAsupprimer = NULL;
+    maillonSC *precedentFinal = l->debut, *suivantFinal = NULL, *maillonAsupprimer = NULL;
     if (r) {
-        for (i = 0; i < r - 1; i++) {
+        for (int i = 0; i < r - 1; i++) {
             precedentFinal = precedentFinal->suivant;
         }
         maillonAsupprimer = precedentFinal->suivant;
@@ -122,15 +119,15 @@ int elementAtPosSC(struct listeSC *l, int pos) {
 
 //Ajoute un élément en début de liste
 void ajout_entete_listSC(struct listeSC *l, int info) {
-    maillonSC *nouveau = (maillonSC *) malloc(sizeof(maillonSC));
-    nouveau->info = info;
-    nouveau->suivant = NULL;
+    maillonSC *new = (maillonSC *) malloc(sizeof(maillonSC));
+    new->info = info;
+    new->suivant = NULL;
     if (l->debut == NULL) {
-        l->debut = nouveau;
-        l->fin = nouveau;
+        l->debut = new;
+        l->fin = new;
     }  else {
-        nouveau->suivant = l->debut;
-        l->debut = nouveau;
+        new->suivant = l->debut;
+        l->debut = new;
     }
 }
 

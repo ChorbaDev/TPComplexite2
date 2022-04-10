@@ -50,7 +50,7 @@ void affiche_listeDCinv(struct listeDC *l) {
 // A COMPLETER
 // Renvoie le pointeur sur le maillon contenant l'entier info, NULL si info n'est pas present dans la liste
 struct maillonDC *recherche_listeDC(struct listeDC *l, int info) {
-    struct maillonDC *aux = l->debut;
+    maillonDC *aux = l->debut;
     while (aux != NULL) {
         if (aux->info == info)
             break;
@@ -62,18 +62,18 @@ struct maillonDC *recherche_listeDC(struct listeDC *l, int info) {
 // A COMPLETER
 // Ajoute un element a la fin de la liste
 void ajout_listeDC(struct listeDC *l, int info) {
-    maillonDC *nouveau = (maillonDC *) malloc(sizeof(maillonDC));
-    nouveau->info = info;
-    nouveau->suivant = NULL;
-    nouveau->precedent = NULL;
+    maillonDC *new = (maillonDC *) malloc(sizeof(maillonDC));
+    new->info = info;
+    new->suivant = NULL;
+    new->precedent = NULL;
     if (l->debut == NULL) {
-        l->debut = nouveau;
-        l->fin = nouveau;
+        l->debut = new;
+        l->fin = new;
     } else {
         maillonDC *previous;
         previous = l->fin;
-        l->fin->suivant = nouveau;
-        l->fin = nouveau;
+        l->fin->suivant = new;
+        l->fin = new;
         l->fin->precedent = previous;
     }
 }
@@ -106,7 +106,6 @@ int elementAtPosDC(struct listeDC *l, int pos) {
         aux = aux->suivant;
     }
     return aux->info;
-
 }
 
 //Ajoute un élément en début de liste
@@ -154,13 +153,11 @@ void insert_listDC(struct listeDC *l, int info, int position) {
 // A liberer dans le programme principal
 struct maillonDC *suppression_listeDC(struct listeDC *l, int info) {
     int r = rangDCinfo(l, info);
-    //printf("\n%d",r);
     if (r < 0)
         return NULL;
-    int i;
     struct maillonDC *precedentFinal = l->debut, *suivantFinal = NULL, *maillonAsupprimer = NULL;
     if (r) {
-        for (i = 0; i < r - 1; i++) {
+        for (int i = 0; i < r - 1; i++) {
             precedentFinal = precedentFinal->suivant;
         }
         maillonAsupprimer = precedentFinal->suivant;

@@ -10,9 +10,7 @@
 // Affiche le tableau
 // nbel = nombre d'element dans le tableau
 void affiche_tableau(int *t, int nbel) {
-    int i;
-
-    for (i = 0; i < nbel; ++i)
+    for (int i = 0; i < nbel; ++i)
         printf("%d ", t[i]);
     printf("\n");
 }
@@ -21,12 +19,11 @@ void affiche_tableau(int *t, int nbel) {
 // recherche un element dans un tableau
 // renvoie l'indice où se trouve l'element, -1 sinon
 int recherche_tableau(int *t, int nbel, int info) {
-    int i;
-    for (i = 0; i < nbel; ++i) {
+    for (int i = 0; i < nbel; ++i) {
         if( *(t+i)==info)
-            break;
+            return i;
     }
-    return i;
+    return -1;
 }
 
 // A COMPLETER
@@ -50,9 +47,11 @@ void insert_tableau(int *t,int nbel, int info, int position){
 // Ne fait rien si info n'est pas dans le tableau
 // Retourne le nouveau nombre d'elements dans le tableau
 int suppression_tableau(int *t, int nbel, int info) {
-    int c,position= recherche_tableau(t,nbel,info);
-    for (c = position - 1; c < nbel - 1; c++)
-        t[c] = t[c+1];
+    int position= recherche_tableau(t,nbel,info);
+    if (position==-1)
+        return nbel;
+    for (int i = position - 1; i < nbel - 1; i++)
+        t[i] = t[i+1];
     return nbel-1;
 }
 

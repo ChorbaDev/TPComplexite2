@@ -47,8 +47,10 @@ int main(int argc, char *argv[]) {
     printf("Temps de la recherche d'un element pour le tableau : %f\n", temps);
     t1 = clock();
     for (i = 0; i < nb_elements_de_base; i++) {
-        nbel = suppression_tableau(t, nbel, tableau[rand() % N]);
+        int r=tableau[rand() % N];
+        nbel = suppression_tableau(t, nbel, r);
     }
+    affiche_tableau(t,nbel);
     t2 = clock();
     temps = (float) (t2 - t1) / CLOCKS_PER_SEC;
     printf("Temps de la suppression pour le tableau : %f\n", temps);
@@ -57,6 +59,7 @@ int main(int argc, char *argv[]) {
     //--------
     //version Liste Simplement Chaînée
     //--------
+
     struct listeSC lsc;
     init_listeSC(&lsc);
     struct maillonSC *auxsc;
